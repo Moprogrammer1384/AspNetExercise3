@@ -3,14 +3,10 @@ using AspNetExercise3.CustomConstraint.Contracts;
 
 namespace AspNetExercise3.CustomConstraint;
 
-public class IsPrimeConstraint : IRouteConstraint
+public class IsPrimeConstraint
+    (IValueCheckerService valueChecker) : IRouteConstraint
 {
-    private readonly IValueCheckerService _valueChecker;
-
-    public IsPrimeConstraint(IValueCheckerService valueChecker)
-    {
-        this._valueChecker = valueChecker;
-    }
+    private readonly IValueCheckerService _valueChecker = valueChecker;
 
     public bool Match(
         HttpContext? httpContext,
